@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user account information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "displayName": { "type": "string", "description": "The display name of the user." },
+        "email": { "type": "string", "format": "email", "description": "The email address of the user." },
+        "photoURL": { "type": "string", "description": "The URL of the user's profile photo." },
+        "createdAt": { "type": "string", "description": "The timestamp when the profile was created." }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "Habit": {
+      "title": "Habit",
+      "description": "Defines a habit to be tracked.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique ID of the habit." },
+        "uid": { "type": "string", "description": "The ID of the user who owns this habit." },
+        "name": { "type": "string", "description": "The name of the habit." },
+        "icon": { "type": "string", "description": "The icon representing the habit." },
+        "color": { "type": "string", "description": "The color associated with the habit." },
+        "createdAt": { "type": "string", "description": "The timestamp when the habit was created." },
+        "deleted": { "type": "boolean", "description": "Whether the habit is marked as deleted." }
+      },
+      "required": ["id", "uid", "name", "createdAt"]
+    },
+    "DailyEntry": {
+      "title": "Daily Entry",
+      "description": "Stores the checklist data for a specific day.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique ID of the entry (usually YYYY-MM-DD_uid)." },
+        "uid": { "type": "string", "description": "The ID of the user who owns this entry." },
+        "date": { "type": "string", "description": "The date of the entry in YYYY-MM-DD format." },
+        "productivity": { "type": "integer", "description": "Productivity level from 1 to 5." },
+        "habits": { "type": "object", "description": "A map of habit IDs to completion status (boolean)." },
+        "notes": { "type": "string", "description": "Daily reflection notes." },
+        "isDayCompleted": { "type": "boolean", "description": "Whether the day's tasks are marked as completed." },
+        "createdAt": { "type": "string", "description": "The timestamp when the entry was created/updated." }
+      },
+      "required": ["id", "uid", "date", "habits", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "User profile documents."
+    },
+    "/habits/{habitId}": {
+      "schema": "Habit",
+      "description": "User habits."
+    },
+    "/entries/{entryId}": {
+      "schema": "DailyEntry",
+      "description": "Daily checklist entries."
+    }
+  }
+}

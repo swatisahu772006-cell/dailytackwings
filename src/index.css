@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.03) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(239, 68, 68, 0.02) 0px, transparent 50%);
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-xl border border-slate-100 rounded-[2.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500;
+}
+
+.glass-card:hover {
+  @apply shadow-[0_20px_50px_rgba(37,99,235,0.08)] border-blue-100/50;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700 transition-all rounded-2xl shadow-lg shadow-blue-200 active:scale-95;
+}
+
+.btn-pink {
+  @apply bg-pink-500 text-white hover:bg-pink-600 transition-all rounded-2xl shadow-lg shadow-pink-200 active:scale-95;
+}
+
+.btn-red {
+  @apply bg-red-500 text-white hover:bg-red-600 transition-all rounded-2xl shadow-lg shadow-red-200 active:scale-95;
+}
+
+.small-caps {
+  @apply text-[11px] uppercase tracking-[0.25em] font-bold text-slate-400;
+}
+
+.stat-value {
+  @apply font-display text-4xl font-bold tracking-tighter;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
